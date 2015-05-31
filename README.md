@@ -32,7 +32,7 @@ It should produce this quadtree:<br />
 ![barnes-hut tree](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/tree.png)
 
 <br />
-It display Barnes-Hut tree:<br />
+It display the Barnes-Hut tree:<br />
 ```
 Square {
     x: 0,

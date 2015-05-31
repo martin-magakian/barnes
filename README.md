@@ -1,6 +1,7 @@
-Barnes-Hut implementation in Rust
+Barnes-Hut tree in Rust
 ============
-Based on [The Barnes-Hut Algorithm](http://arborjs.org/docs/barnes-hut) by Tom Ventimiglia & Kevin Wayne
+Based on [The Barnes-Hut Algorithm](http://arborjs.org/docs/barnes-hut) by Tom Ventimiglia & Kevin Wayne.<br />
+"A quad-tree is similar to a binary tree, except that each node has 4 children"
 
 
 Made to learn Rust

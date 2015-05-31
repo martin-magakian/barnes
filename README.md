@@ -6,7 +6,7 @@ Based on "[The Barnes-Hut Algorithm](http://arborjs.org/docs/barnes-hut)"  from 
 Made to learn Rust
 ---------
 My friend [Tristan Brismontier](https://github.com/TristanBrismontier) was building a (more advance) [Barnes-Hut in C# using Unity](https://github.com/TristanBrismontier/Barnes-Hut-Algorithm).<br />
-It look like a nice project for learning Rust.
+It look like a nice project for learning Rust.<br />
 Also, an interesting candidate for building an [Anomaly Detection Service](https://anomaly.io)
 
 
@@ -21,6 +21,7 @@ println!("{:#?}", square);
 
 Compile and Run 
 ---------
+From the command line:
 > cargo run
 
 This demo use 8 points:<br />
@@ -29,8 +30,9 @@ This demo use 8 points:<br />
 And should produce this quadtree:<br />
 ![barnes-hut tree](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/tree.png)
 
-Output:<br />
-```JSON
+<br />
+It work indeed:<br />
+```
 Square {
     x: 0,
     y: 0,
@@ -232,7 +234,7 @@ Square {
 Performance
 -------
 
-in x: number of point to place in the tree
+in x: number of point to place in the tree<br />
 in y: time used in secound
 
 

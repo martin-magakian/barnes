@@ -1,12 +1,12 @@
 Barnes-Hut implementation in Rust
 ============
-Based on "[The Barnes-Hut Algorithm](http://arborjs.org/docs/barnes-hut)"  from Tom Ventimiglia & Kevin Wayne
+Based on [The Barnes-Hut Algorithm](http://arborjs.org/docs/barnes-hut) by Tom Ventimiglia & Kevin Wayne
 
 
 Made to learn Rust
 ---------
 My friend [Tristan Brismontier](https://github.com/TristanBrismontier) was building a (more advance) [Barnes-Hut in C# using Unity](https://github.com/TristanBrismontier/Barnes-Hut-Algorithm).<br />
-It look like a nice project for learning Rust.<br />
+It looks like a nice project for learning Rust.<br />
 Also, an interesting candidate for building an [Anomaly Detection Service](https://anomaly.io)
 
 
@@ -27,7 +27,7 @@ From the command line:
 This demo use 8 points:<br />
 ![barnes-hut quadrant](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/quadrant.png)
 
-And should produce this quadtree:<br />
+It should produce this quadtree:<br />
 ![barnes-hut tree](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/tree.png)
 
 <br />
@@ -235,7 +235,7 @@ Performance
 -------
 
 in x: number of point to place in the tree<br />
-in y: time used in secound
+in y: time used in second
 
 
 ![perf1](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/perf1.png)

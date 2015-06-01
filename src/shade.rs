@@ -20,6 +20,12 @@ pub struct Region{
 	pub se: Square
 }
 
+impl Region {
+	pub fn new(nw: Square, ne:Square, sw:Square, se:Square) -> Region {
+		Region{ nw:nw, ne:ne, sw:sw, se:se }
+	}
+}
+
 
 #[derive(Debug)]
 pub struct Square {
@@ -77,31 +83,24 @@ impl Square {
 		}
     }
     
-    fn split(&self) -> (Square,Square,Square,Square){
+    fn split(&self) -> Region {
     	let sw = Square::new(self.x, self.y, self.lenght / 2);
     	let se = Square::new(self.x + self.lenght / 2, self.y, self.lenght / 2);
     	let ne = Square::new(self.x + self.lenght / 2, self.y + self.lenght / 2, self.lenght / 2);
     	let nw = Square::new(self.x, self.y + self.lenght / 2, self.lenght / 2);
-    	(nw, ne, sw, se)
+    	Region::new(sw, se , ne, nw)
     }
     
     
     fn split_fill(&mut self, mut bucket: Vec<Point>) -> Vec<Point> {
-    	let (mut nw, mut ne, mut sw, mut se) = self.split();
+    	let mut region = self.split();
     	
-		bucket = nw.fill_bucket(bucket);
-		bucket = ne.fill_bucket(bucket);
-		bucket = sw.fill_bucket(bucket);
-		bucket = se.fill_bucket(bucket);
+		bucket = region.nw.fill_bucket(bucket);
+		bucket = region.ne.fill_bucket(bucket);
+		bucket = region.sw.fill_bucket(bucket);
+		bucket = region.se.fill_bucket(bucket);
 		
-		self.region = Some(Box::new(
-				Region{
-					nw: nw,
-					ne: ne,
-					sw: sw,
-					se: se
-				})
-			);
+		self.region = Some(Box::new(region));
 		bucket
     }
     
@@ -110,4 +109,3 @@ impl Square {
 		self.split_fill(bucket);
 	}
 }
-

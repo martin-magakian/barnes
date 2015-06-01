@@ -1,3 +1,8 @@
+mod shade;
+use shade::Point;
+use shade::Square;
+
+
 extern crate time;
 use time::{Duration, PreciseTime, SteadyTime};
 
@@ -31,8 +36,5 @@ fn run_benchmark(num_point: i64) {
 }
 
 fn main() {
-	let mut square = Square::new(0, 0, 80);
-	square.compute(create_points());
-
-	println!("nw = {:#?}", square);
+	run_benchmark(1_000_000);
 }

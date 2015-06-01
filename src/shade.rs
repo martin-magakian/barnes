@@ -84,11 +84,11 @@ impl Square {
     }
     
     fn split(&self) -> Region {
-    	let sw = Square::new(self.x, self.y, self.lenght / 2);
-    	let se = Square::new(self.x + self.lenght / 2, self.y, self.lenght / 2);
-    	let ne = Square::new(self.x + self.lenght / 2, self.y + self.lenght / 2, self.lenght / 2);
     	let nw = Square::new(self.x, self.y + self.lenght / 2, self.lenght / 2);
-    	Region::new(sw, se , ne, nw)
+    	let ne = Square::new(self.x + self.lenght / 2, self.y + self.lenght / 2, self.lenght / 2);
+    	let se = Square::new(self.x + self.lenght / 2, self.y, self.lenght / 2);
+    	let sw = Square::new(self.x, self.y, self.lenght / 2);
+    	Region::new(nw, ne , sw, se)
     }
     
     

@@ -33,7 +33,7 @@ It should produce this quadtree:<br />
 
 <br />
 It display the Barnes-Hut tree:<br />
-```
+```JS
 Square {
     x: 0,
     y: 0,

@@ -264,7 +264,7 @@ in y: time used in second
 
 ![perf1](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/perf1.png)
 
-28 second to insert 40.000.000 point in the Barnes-Hut tree.
+28 second to insert 40.000.000 point in the Barnes-Hut tree.<br />
 (on MacBook Pro 8 core)
 
 

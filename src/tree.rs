@@ -8,7 +8,6 @@ use std::thread;
 static mut THREAD_LIMIT: i64 = 0;
 fn find_thread_limit(bucket_size:i64) -> i64{
 	let thread = num_cpus::get() as i64;
-	println!("{}", thread);
 	let limit = bucket_size / (thread * 10);
 	limit
 }

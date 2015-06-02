@@ -13,26 +13,48 @@ Also, an interesting candidate for building an [Anomaly Detection Service](https
 
 How to use
 ---------
-```Rust
-let mut square = Square::new(0, 0, 80);
-square.compute(some_points);
 
-println!("{:#?}", square);
+Add barnes dependency in Cargo.toml:
+```Rust
+[dependencies]
+
+barnes = "0.1.0"
 ```
 
-Compile and Run 
----------
-From the command line:
-> cargo run
 
-This demo use 8 points:<br />
+```Rust
+use data::{Point, Square, Region};
+use tree::Tree;
+
+fn create_points() -> Vec<Point> {
+	vec![
+		Point::new(13, 62, "A"),
+		Point::new(45, 65, "C"),
+		Point::new(54, 72, "B"),
+		Point::new(62, 57, "D"),
+		Point::new(38, 38, "E"),
+		Point::new(11, 5, "F"),
+		Point::new(32, 11, "G"),
+		Point::new(52, 8, "H"),
+		]
+}
+
+fn main() {
+	let mut square = Square::new(0, 0, 80);
+	square = Tree.compute_root(square, create_points());
+	
+	println!("{:?}", square);
+}
+```
+
+This code use 8 points:<br />
 ![barnes-hut quadrant](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/quadrant.png)
 
-It should produce this quadtree:<br />
+It produce this quadtree:<br />
 ![barnes-hut tree](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/tree.png)
 
 <br />
-It display the Barnes-Hut tree:<br />
+The display:<br />
 ```JS
 Square {
     x: 0,
@@ -234,6 +256,7 @@ Square {
 
 Performance
 -------
+(on MacBook Pro 8 core)
 
 in x: number of point to place in the tree<br />
 in y: time used in second

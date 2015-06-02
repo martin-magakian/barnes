@@ -23,6 +23,7 @@ barnes = "0.1.0"
 
 
 ```Rust
+extern crate barnes;
 use data::{Point, Square, Region};
 use tree::Tree;
 
@@ -256,15 +257,15 @@ Square {
 
 Performance
 -------
-(on MacBook Pro 8 core)
 
 in x: number of point to place in the tree<br />
 in y: time used in second
 
 
 ![perf1](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/perf1.png)
-![perf2](https://raw.github.com/martin-magakian/Barnes-Hut/master/README_src/perf2.png)
 
+28 second to insert 40.000.000 point in the Barnes-Hut tree.
+(on MacBook Pro 8 core)
 
 
 Contact

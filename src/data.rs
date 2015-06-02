@@ -34,13 +34,14 @@ pub struct Square {
 	pub lenght: i64,
 	pub weight: i64,
 	pub point: Option<Point>,
+	pub bucket: Option<Vec<Point>>,
 	pub region: Option<Box<Region>>
 }
 
 impl Square {
 
 	pub fn new(x:i64, y:i64, lenght:i64) -> Square {
-		Square { x:x, y:y, lenght:lenght, weight: 0, point: None, region: None}
+		Square { x:x, y:y, lenght:lenght, weight: 0, point: None, bucket: None, region: None}
 	}
 
     pub fn is_inside(&self, point: &Point) -> bool {

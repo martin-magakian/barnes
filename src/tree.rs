@@ -1,18 +1,14 @@
-mod data;
-use data::{Point, Square, Region};
-
+use data::{Point, Region, Square};
 use std::thread;
 
-extern crate time;
-use time::{Duration, PreciseTime, SteadyTime};
 
-extern crate rand;
-use rand::distributions::{IndependentSample, Range};
-use rand::Rng;
-
-static N_THREAD: i64 = 5;
-
-
+static mut THREAD_LIMIT: i64 = 0;
+fn find_thread_limit(bucket_size:i64) -> i64{
+	let thread = 8;
+	
+	let limit = bucket_size / (thread * 10);
+	limit
+}
 
 pub fn use_bucket(square:&mut Square, mother_bucket: Vec<Point>) -> (Vec<Point>, Vec<Point>){
 	let mut inside = vec![];
@@ -116,87 +112,20 @@ fn compute(mut self_square :Square, mut bucket:Vec<Point>) -> (Square, Option<Po
 	(self_square, None, None)
 }
 
-fn find_thread_worth_ratio(bucket_size:i64) -> i64{
-	let thread = 8;
-	
-	let limit = bucket_size / (thread * 10);
-	limit
-}
 
-static mut THREAD_LIMIT: i64 = 0;
-pub fn start(mut square: Square, root_bucket :Vec<Point>) -> Square {
-	let bucket_size = root_bucket.len() as i64;
-	square.weight = bucket_size;
-	unsafe {
-		THREAD_LIMIT = find_thread_worth_ratio(bucket_size)
-		}
-	let (square, _, _) = compute(square, root_bucket);
-	square
+pub struct Tree;
+impl Tree{
+	
+	pub fn compute_root(&self, mut square: Square, root_bucket :Vec<Point>) -> Square {
+		let bucket_size = root_bucket.len() as i64;
+		square.weight = bucket_size;
+		unsafe {
+			THREAD_LIMIT = find_thread_limit(bucket_size)
+			}
+		let (square, _, _) = compute(square, root_bucket);
+		square
+	}
 }
 
 
 
-
-
-///////MAIN 
-
-
-
-
-
-fn random_point(num_point: i64, max: i64) -> Vec<Point> {
-	let mut rng = rand::thread_rng();
-	let between = Range::new(0i64, max);
-	
-	
-	(0..num_point).map(|e| {
-						Point::new(between.ind_sample(&mut rng), between.ind_sample(&mut rng), "hey")
-					}).collect()
-}
-
-
-
-
-
-fn create_points() -> Vec<Point>{
-	vec![
-		Point::new(13, 62, "A"),
-		Point::new(45, 65, "C"),
-		Point::new(54, 72, "B"),
-		Point::new(62, 57, "D"),
-		Point::new(38, 38, "E"),
-		Point::new(11, 5, "F"),
-		Point::new(32, 11, "G"),
-		Point::new(52, 8, "H"),
-		]
-}
-
-/*fn main() {
-	let mut square = Square::new(0, 0, 80);
-	square = start(square, create_points());
-
-	println!("{:#?}", square);
-}*/
-
-
-fn run_benchmark(num_point: i64) {
-	
-	let grid_size = num_point*100;
-	println!("[mono-thread] - generate random point");
-	let startTimer = SteadyTime::now();
-	let rand_points = random_point(num_point, grid_size);
-	println!("[/end] - {}", SteadyTime::now()-startTimer);
-	
-	println!("[multi-thread] - start Barnes Hut");
-	let startTimer = SteadyTime::now();
-	let mut square = Square::new(0, 0, grid_size);
-	square = start(square, rand_points);
-	println!("[/end] - {}", SteadyTime::now()-startTimer);
-	
-}
-
-
-
-fn main() {
-	run_benchmark(20_000_000);
-}

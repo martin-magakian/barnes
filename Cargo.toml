@@ -3,8 +3,19 @@ name = "barnes"
 version = "0.1.0"
 authors = ["Martin Magakian <dev.martin.magakian@gmail.com>"]
 description = "A multithreaded Barnes Hut Algorithm implementation."
+license = "MIT"
+repository = "https://github.com/martin-magakian/barnes"
+homepage = "https://github.com/martin-magakian/barnes"
+documentation = "https://github.com/martin-magakian/barnes/blob/master/README.md"
+keywords = ["barnes", "hut", "barnes-hut", "simulation"]
 
 [lib]
 
 name = "barnes"
 path = "src/lib.rs"
+
+
+[dependencies]
+
+num_cpus = "0.2.6"
+

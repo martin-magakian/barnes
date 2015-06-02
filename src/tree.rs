@@ -1,11 +1,14 @@
+extern crate num_cpus;
+
 use data::{Point, Region, Square};
 use std::thread;
 
 
+
 static mut THREAD_LIMIT: i64 = 0;
 fn find_thread_limit(bucket_size:i64) -> i64{
-	let thread = 8;
-	
+	let thread = num_cpus::get() as i64;
+	println!("{}", thread);
 	let limit = bucket_size / (thread * 10);
 	limit
 }
@@ -88,7 +91,6 @@ fn create_region(self_square :&Square, bucket :Vec<Point>) -> Region {
 	let (se_bucket, _) = use_bucket(&mut se, current_bucket);
 	
 	if size > unsafe{THREAD_LIMIT} {
-		println!("4 thread");
 		create_region_thread(nw,nw_bucket, ne,ne_bucket, sw,sw_bucket, se,se_bucket)
 	}else{
 		create_region_no_thread(nw,nw_bucket, ne,ne_bucket, sw,sw_bucket, se,se_bucket)

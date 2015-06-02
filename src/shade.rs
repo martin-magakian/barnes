@@ -1,3 +1,5 @@
+use data::Point;
+
 static N_THREAD: i32 = 5;
 
 #[derive(Debug)]

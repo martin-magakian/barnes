@@ -13,6 +13,7 @@ fn random_point(num_point: i64, max: i64) -> Vec<Point> {
 	let mut rng = rand::thread_rng();
 	let between = Range::new(0i64, max);
 	
+	
 	(0..num_point).map(|e| {
 						Point::new(between.ind_sample(&mut rng), between.ind_sample(&mut rng), "hey")
 					}).collect()
